@@ -7,10 +7,10 @@ DATA = {
         'соль, ч.л.': 0.5,
     },
     'pasta': {
-        'макароны, г': 0.3,
-        'сыр, г': 0.05,
+        'макароны, кг': 0.3,
+        'сыр, кг': 0.05,
     },
-    'buter': {
+    'butter': {
         'хлеб, ломтик': 1,
         'колбаса, ломтик': 1,
         'сыр, ломтик': 1,
@@ -18,6 +18,7 @@ DATA = {
     },
     # можете добавить свои рецепты ;)
 }
+
 
 # Напишите ваш обработчик. Используйте DATA как источник данных
 # Результат - render(request, 'calculator/index.html', context)
@@ -28,3 +29,30 @@ DATA = {
 #     'ингредиент2': количество2,
 #   }
 # }
+
+
+def omlet(request):
+    num = int(request.GET.get('servings', 1))
+    oml = {key: value * num for key, value in DATA.get('omlet').items()}
+    context = {
+        'recipe': oml
+    }
+    return render(request, 'calculator/index.html', context)
+
+
+def pasta(request):
+    num = int(request.GET.get('servings', 1))
+    pas = {key: value * num for key, value in DATA.get('pasta').items()}
+    context = {
+        'recipe': pas
+    }
+    return render(request, 'calculator/index.html', context)
+
+
+def butter(request):
+    num = int(request.GET.get('servings', 1))
+    but = {key: value * num for key, value in DATA.get('butter').items()}
+    context = {
+        'recipe': but
+    }
+    return render(request, 'calculator/index.html', context)
