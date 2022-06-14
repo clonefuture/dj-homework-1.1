@@ -26,10 +26,10 @@ def bus_stations(request):
 
     stations = lst_stations()
     paginator = Paginator(stations, 10)
-    page_number = request.GET.get('page', 1)
-    stations = paginator.get_page(page_number)
+    page_number = int(request.GET.get('page', 1))
+    pages = paginator.get_page(page_number)
     context = {
-        'page': stations,
-        'bus_stations': stations,
+        'page': pages,
+        'bus_stations': pages.object_list
     }
     return render(request, 'stations/index.html', context)

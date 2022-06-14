@@ -30,29 +30,10 @@ DATA = {
 #   }
 # }
 
-
-def omlet(request):
+def recipes(request, recipe):
     num = int(request.GET.get('servings', 1))
-    oml = {key: value * num for key, value in DATA.get('omlet').items()}
+    prod = {key: value * num for key, value in DATA.get(recipe).items()}
     context = {
-        'recipe': oml
-    }
-    return render(request, 'calculator/index.html', context)
-
-
-def pasta(request):
-    num = int(request.GET.get('servings', 1))
-    pas = {key: value * num for key, value in DATA.get('pasta').items()}
-    context = {
-        'recipe': pas
-    }
-    return render(request, 'calculator/index.html', context)
-
-
-def butter(request):
-    num = int(request.GET.get('servings', 1))
-    but = {key: value * num for key, value in DATA.get('butter').items()}
-    context = {
-        'recipe': but
+        'recipe': prod
     }
     return render(request, 'calculator/index.html', context)
