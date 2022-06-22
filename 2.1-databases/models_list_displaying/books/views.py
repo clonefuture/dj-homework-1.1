@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
-from books.models import Book
+from .models import Book
 from collections import OrderedDict
 
 
