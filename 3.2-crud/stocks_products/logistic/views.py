@@ -5,7 +5,7 @@ from .serializers import ProductSerializer, StockSerializer
 
 
 class ProductViewSet(ModelViewSet):
-    queryset = Product.objects.all()
+    queryset = Product.objects.all().order_by('title')
     serializer_class = ProductSerializer
     search_fields = ['title']
 
