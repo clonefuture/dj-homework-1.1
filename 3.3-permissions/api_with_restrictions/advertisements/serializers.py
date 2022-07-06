@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from .models import Advertisement
+from .models import Advertisement, AdvertisementStatusChoices
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -42,4 +42,6 @@ class AdvertisementSerializer(serializers.ModelSerializer):
 
         # TODO: добавьте требуемую валидацию
 
+        if Advertisement.objects.filter(creator=self.context["request"].user, status='OPEN').count() > 9:
+            raise serializers.ValidationError("the user must not have more than 10 open ads")
         return data

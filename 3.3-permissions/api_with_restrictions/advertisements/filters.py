@@ -1,6 +1,5 @@
-from django_filters import rest_framework as filters
-
 from advertisements.models import Advertisement
+from django_filters import rest_framework as filters
 
 
 class AdvertisementFilter(filters.FilterSet):
